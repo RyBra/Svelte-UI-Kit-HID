@@ -38,6 +38,26 @@
   disabled={disabled || loading}
   aria-busy={loading ? true : undefined}
 >
-  {#if loading}<span class="ui-button__spinner" aria-hidden="true"></span>{/if}
+  {#if loading}
+    <svg class="ui-button__spinner" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle
+        cx="8"
+        cy="8"
+        r="6"
+        stroke="currentColor"
+        stroke-opacity="0.28"
+        stroke-width="2"
+      />
+      <circle
+        cx="8"
+        cy="8"
+        r="6"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-dasharray="9.42 28.27"
+      />
+    </svg>
+  {/if}
   {@render children?.()}
 </button>

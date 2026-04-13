@@ -12,7 +12,16 @@
 
   let destination = $state("");
   let dateValue = $state<{ checkIn: string; checkOut: string }>({ checkIn: "", checkOut: "" });
-  let guests = $state(2);
+  let guestsInput = $state("2");
+
+  function digitsOnly(raw: string) {
+    return raw.replace(/\D/g, "");
+  }
+
+  function onGuestsInput(event: Event) {
+    const el = event.currentTarget as HTMLInputElement;
+    guestsInput = digitsOnly(el.value);
+  }
   let destinationError = $state("");
   let dateError = $state("");
 
@@ -28,6 +37,10 @@
       dateError = "Дата выезда должна быть позже даты заезда";
       return;
     }
+    const parsed = parseInt(digitsOnly(guestsInput), 10);
+    const guests = Number.isFinite(parsed)
+      ? Math.min(16, Math.max(1, parsed))
+      : 1;
     onSearch({ destination: destination.trim(), checkIn, checkOut, guests });
   }
 
@@ -51,7 +64,15 @@
 
     <FormField label="Гости">
       {#snippet control(a11y)}
-        <Input {...a11y} bind:value={guests} type="number" min={1} max={16} size="lg" />
+        <Input
+          {...a11y}
+          bind:value={guestsInput}
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          oninput={onGuestsInput}
+          size="lg"
+        />
       {/snippet}
     </FormField>
 

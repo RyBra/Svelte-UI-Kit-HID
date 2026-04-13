@@ -19,6 +19,9 @@
     "design-system"
   ],
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -55,12 +58,18 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.30.0",
+    "@rolldown/binding-darwin-arm64": "1.0.0-rc.15",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "svelte": "^5.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.8"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "showcase:dev": "vite --config vite.showcase.config.ts",
+    "showcase:build": "vite build --config vite.showcase.config.ts",
+    "showcase:preview": "vite preview --config vite.showcase.config.ts",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish",

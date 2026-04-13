@@ -24,8 +24,8 @@
   --blur-none: 0px;
   --blur-sm: 8px;
   --blur-md: 14px;
-  --shadow-1: 0 4px 14px rgba(16, 17, 20, 0.06);
-  --shadow-2: 0 10px 24px rgba(16, 17, 20, 0.08);
+  --shadow-1: 0 1px 3px rgba(16, 17, 20, 0.05), 0 2px 8px rgba(16, 17, 20, 0.04);
+  --shadow-2: 0 2px 6px rgba(16, 17, 20, 0.04), 0 4px 12px rgba(16, 17, 20, 0.04);
 
   /* Motion */
   --dur-fast: 120ms;
@@ -58,4 +58,56 @@
   --glass-shadow: var(--shadow-2);
 
   --font-family-sans: "Noto Sans", -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Liquid glass required tokens */
+  --lg-surface: rgba(255, 255, 255, 0.14);
+  --lg-border: rgba(255, 255, 255, 0.24);
+  --lg-blur: var(--glass-blur);
+  --lg-highlight: rgba(255, 255, 255, 0.42);
+  --lg-shadow-soft: var(--glass-shadow);
+  --lg-shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  --lg-tint: rgba(47, 128, 255, 0.08);
+  --lg-contrast-overlay: rgba(255, 255, 255, 0.72);
+  --lg-radius-sm: var(--r-12);
+  --lg-radius-md: var(--r-16);
+  --lg-radius-lg: var(--r-20);
+  --lg-radius-xl: 24px;
+
+  /* UI aliases to keep existing structure working */
+  --ui-space-1: 4px;
+  --ui-space-2: var(--s-8);
+  --ui-space-3: var(--s-12);
+  --ui-space-4: var(--s-16);
+  --ui-space-5: var(--s-20);
+  --ui-space-6: var(--s-24);
+
+  --ui-radius-sm: var(--lg-radius-sm);
+  --ui-radius-md: var(--lg-radius-md);
+  --ui-radius-lg: var(--lg-radius-lg);
+
+  --ui-surface: var(--surface-base);
+  --ui-surface-strong: var(--surface-elevated);
+  --ui-surface-glass: var(--lg-surface);
+  /* Page / canvas background (follows light/dark via --surface-bg) */
+  --ui-bg: var(--surface-bg);
+  --ui-text: var(--text-primary);
+  --ui-text-muted: var(--text-secondary);
+  --ui-border: var(--border-subtle);
+  --ui-border-strong: var(--border-strong);
+  --ui-accent: var(--accent);
+  --ui-accent-press: var(--accent-press);
+  --ui-danger: var(--danger);
+  --ui-success: var(--success);
+  /* Switch track when checked (reference: solid green, not accent blue) */
+  --ui-switch-on: var(--ui-success);
+  --ui-focus-ring: var(--focus-ring);
+  --ui-shadow-soft: var(--shadow-1);
+  --ui-shadow-strong: var(--shadow-2);
+  --ui-hit-area-min: 44px;
+  --ui-control-height-md: 44px;
+  --ui-control-height-lg: 52px;
+
+  /* Capability toggles for glass effects */
+  --ui-backdrop-enabled: 1;
+  --ui-reduced-transparency: 0;
 }

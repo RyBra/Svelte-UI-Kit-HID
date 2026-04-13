@@ -31,6 +31,4 @@
   class="ui-icon-button{variantClass ? ` ${variantClass}` : ''}{className ? ` ${className}` : ''}"
   aria-label={ariaLabel}
   {disabled}
->
-  {@render children?.()}
-</button>
+><span class="ui-icon-button__content">{@render children?.()}</span></button>

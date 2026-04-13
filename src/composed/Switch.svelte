@@ -38,7 +38,9 @@
   onkeydown={onKeydown}
 >
   {#if children}
-    {@render children()}
+    <span class="ui-switch__label">
+      {@render children()}
+    </span>
   {/if}
   <span class="ui-switch-track" data-on={checked}>
     <span class="ui-switch-thumb"></span>

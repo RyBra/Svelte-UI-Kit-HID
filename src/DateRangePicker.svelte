@@ -48,12 +48,14 @@
   let selectingEnd = $state(false);
   let touched = $state(false);
   let mode = $state<"dates" | "flexible">("dates");
+  const modeIndex = $derived(mode === "dates" ? 0 : 1);
   const now = new Date();
   let viewYear = $state(now.getFullYear());
   let viewMonth = $state(now.getMonth());
   let viewInitialized = $state(false);
   let rootEl: HTMLDivElement | null = null;
   const panelId = `date-range-panel-${Math.random().toString(36).slice(2, 9)}`;
+  const triggerId = `${panelId}-trigger`;
   const errorId = `${panelId}-error`;
 
   const toYmd = (date: Date) => {
@@ -273,13 +275,6 @@
     }
   };
 
-  const onPanelKeydown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closePanel();
-    }
-  };
-
   const hasStartOnly = $derived(Boolean(value.checkIn) && !value.checkOut);
   const applyFlexible = (daysToAdd: number) => {
     if (!value.checkIn) {
@@ -304,17 +299,17 @@
   bind:this={rootEl}
 >
   {#if !inline}
-    <label class="date-range-picker__label">{label}</label>
+    <label class="date-range-picker__label" for={triggerId}>{label}</label>
   {/if}
 
   {#if !inline}
     <button
+      id={triggerId}
       type="button"
       class="date-range-picker__trigger ui-input"
-      aria-haspopup="dialog"
+      aria-haspopup="grid"
       aria-expanded={isOpen}
       aria-controls={panelId}
-      aria-invalid={hasError}
       aria-describedby={hasError ? errorId : undefined}
       onclick={togglePanel}
       onkeydown={onTriggerKeydown}
@@ -325,11 +320,24 @@
   {/if}
 
   {#if inline || isOpen}
-    <div class="date-range-picker__panel ui-card" role="dialog" id={panelId} aria-label="Календарь выбора дат" tabindex="0" onkeydown={onPanelKeydown}>
+    <div class="date-range-picker__panel ui-card" role="region" id={panelId} aria-label="Календарь выбора дат">
       {#if inline}
-        <div class="date-range-picker__mode">
-          <button type="button" class="mode-btn" class:active={mode === "dates"} onclick={() => (mode = "dates")}>Dates</button>
-          <button type="button" class="mode-btn" class:active={mode === "flexible"} onclick={() => (mode = "flexible")}>Flexible</button>
+        <div
+          class="date-range-picker__mode ui-segmented"
+          style={`--seg-count: 2; --seg-index: ${modeIndex}; --seg-gap: 4px; --seg-pad: 4px;`}
+        >
+          <span class="ui-segmented__indicator" aria-hidden="true"></span>
+          <button type="button" class="mode-btn ui-segmented__option" class:active={mode === "dates"} onclick={() => (mode = "dates")}>
+            Dates
+          </button>
+          <button
+            type="button"
+            class="mode-btn ui-segmented__option"
+            class:active={mode === "flexible"}
+            onclick={() => (mode = "flexible")}
+          >
+            Flexible
+          </button>
         </div>
       {/if}
 
@@ -448,6 +456,8 @@
     display: grid;
     gap: var(--ui-space-2);
     position: relative;
+    z-index: 12;
+    isolation: isolate;
   }
 
   .date-range-picker__label {
@@ -497,26 +507,18 @@
   }
   .date-range-picker__mode {
     margin: 0 auto var(--ui-space-2);
-    display: inline-grid;
-    grid-auto-flow: column;
-    gap: 0.25rem;
-    padding: 0.2rem;
-    border-radius: 999px;
-    background: var(--ui-surface);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 260px);
+    --seg-outer-radius: var(--r-pill);
   }
   .mode-btn {
-    min-height: 40px;
+    min-height: 44px;
     min-width: 120px;
-    border: 0;
-    border-radius: 999px;
-    background: transparent;
-    color: var(--ui-text-muted);
     font-weight: 600;
   }
   .mode-btn.active {
-    background: var(--ui-surface-strong);
     color: var(--ui-text);
-    box-shadow: var(--ui-shadow-soft);
   }
 
   .date-range-picker[data-inline="true"] .date-range-picker__label {
@@ -590,6 +592,15 @@
   .date-range-picker[data-inline="true"] .date-range-picker__day {
     color: var(--ui-text);
     border-radius: 999px;
+    width: min(100%, 44px);
+    aspect-ratio: 1;
+    min-height: unset;
+    padding: 0;
+    justify-self: center;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .date-range-picker__day.muted {
@@ -626,7 +637,7 @@
 
   .date-range-picker__day:focus-visible,
   .date-range-picker__nav:focus-visible {
-    outline: 2px solid rgba(47, 128, 255, 0.55);
+    outline: 2px solid var(--ui-focus-ring);
     outline-offset: 2px;
   }
 
@@ -642,16 +653,38 @@
     margin-top: var(--ui-space-2);
   }
   .chip {
-    min-height: 40px;
+    min-height: 44px;
     padding: 0 0.9rem;
     border-radius: 999px;
     border: 1px solid var(--ui-border);
-    background: var(--ui-surface-strong);
+    background: color-mix(in oklab, var(--ui-surface-strong) 86%, var(--lg-surface));
     color: var(--ui-text);
     font-weight: 500;
+    transition:
+      transform var(--dur-fast) var(--ease-standard),
+      background-color var(--dur-base) var(--ease-standard),
+      border-color var(--dur-base) var(--ease-standard),
+      box-shadow var(--dur-base) var(--ease-standard);
+  }
+  .chip:hover:not(:disabled) {
+    border-color: color-mix(in oklab, var(--ui-border-strong) 84%, white);
+    background: color-mix(in oklab, var(--ui-surface-strong) 76%, var(--ui-accent) 10%);
+  }
+  .chip:active:not(:disabled) {
+    transform: scale(0.985);
   }
   .chip.active {
-    border-color: var(--ui-text);
+    border-color: color-mix(in oklab, var(--ui-accent) 34%, var(--ui-border));
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--ui-surface-strong) 96%, white 4%) 0%,
+      color-mix(in oklab, var(--ui-surface-strong) 92%, var(--ui-accent) 14%) 52%,
+      color-mix(in oklab, var(--ui-surface-strong) 90%, black 5%) 100%
+    );
+    box-shadow:
+      0 1px 1px color-mix(in oklab, var(--ui-text) 4%, transparent),
+      0 2px 6px color-mix(in oklab, var(--ui-text) 3%, transparent),
+      inset 0 1px 0 color-mix(in oklab, white 10%, transparent);
   }
 
   .date-range-picker[data-inline="true"] .date-range-picker__actions .ui-button--ghost {
@@ -684,11 +717,25 @@
     min-height: 52px;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .chip {
+      transition:
+        background-color var(--dur-fast) linear,
+        border-color var(--dur-fast) linear,
+        box-shadow var(--dur-fast) linear;
+    }
+
+    .chip:active:not(:disabled) {
+      transform: none;
+    }
+  }
+
   @media (min-width: 768px) {
     .date-range-picker__panel {
       position: absolute;
       top: 100%;
       left: 0;
+      z-index: 24;
     }
 
     .date-range-picker[data-inline="true"] .date-range-picker__panel {

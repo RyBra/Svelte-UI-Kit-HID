@@ -17,5 +17,12 @@
   --accent-press: #4b8ef5;
   --focus-ring: rgba(92, 156, 255, 0.6);
 
-  --glass-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+  --glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.14);
+
+  --lg-surface: rgba(34, 38, 49, 0.46);
+  --lg-border: rgba(255, 255, 255, 0.2);
+  --lg-highlight: rgba(255, 255, 255, 0.2);
+  --lg-shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --lg-tint: rgba(92, 156, 255, 0.12);
+  --lg-contrast-overlay: rgba(18, 20, 24, 0.66);
 }

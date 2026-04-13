@@ -10,4 +10,22 @@
 [data-performance-mode="low"] {
   --glass-blur: var(--blur-sm);
   --glass-shadow: var(--shadow-1);
+  --lg-blur: var(--blur-sm);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --ui-backdrop-enabled: 0;
+    --lg-blur: var(--blur-none);
+    --lg-surface: color-mix(in oklab, var(--surface-elevated) 92%, white);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --ui-reduced-transparency: 1;
+    --lg-blur: var(--blur-none);
+    --lg-surface: color-mix(in oklab, var(--surface-elevated) 94%, white);
+    --lg-border: color-mix(in oklab, var(--border-strong) 72%, white);
+  }
 }

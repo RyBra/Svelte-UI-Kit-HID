@@ -325,22 +325,18 @@
           class="ui-progressive-image-slider__nav-btn"
           disabled={prevDisabled}
           onclick={(e) => scrollByDir(-1, e)}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </IconButton>
+          </svg></IconButton>
         <IconButton
           variant="neutral"
           aria-label="Следующее фото"
           class="ui-progressive-image-slider__nav-btn"
           disabled={nextDisabled}
           onclick={(e) => scrollByDir(1, e)}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </IconButton>
+          </svg></IconButton>
       </div>
 
       <div class="ui-progressive-image-slider__dots">
