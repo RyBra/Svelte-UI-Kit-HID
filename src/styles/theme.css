@@ -1,0 +1,21 @@
+[data-theme="dark"] {
+  --surface-bg: #17191e;
+  --surface-base: rgba(23, 25, 30, 0.88);
+  --surface-elevated: rgba(34, 38, 49, 0.94);
+  --surface-glass: rgba(34, 38, 49, 0.58);
+  --surface-overlay: rgba(0, 0, 0, 0.5);
+
+  --text-primary: #f5f8ff;
+  --text-secondary: #b1bccf;
+  --text-inverse: #101114;
+
+  --border-subtle: rgba(238, 242, 248, 0.12);
+  --border-strong: rgba(238, 242, 248, 0.22);
+  --border-glass: rgba(255, 255, 255, 0.22);
+
+  --accent: #5c9cff;
+  --accent-press: #4b8ef5;
+  --focus-ring: rgba(92, 156, 255, 0.6);
+
+  --glass-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+}

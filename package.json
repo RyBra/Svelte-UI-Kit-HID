@@ -1,0 +1,71 @@
+{
+  "name": "@yaray/ui",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Reusable Svelte UI kit for Yaray applications.",
+  "license": "MIT",
+  "homepage": "https://github.com/RyBra/Svelte-UI-Kit-HID",
+  "bugs": {
+    "url": "https://github.com/RyBra/Svelte-UI-Kit-HID/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RyBra/Svelte-UI-Kit-HID.git"
+  },
+  "keywords": [
+    "svelte",
+    "ui-kit",
+    "components",
+    "design-system"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./theme": {
+      "types": "./dist/theme.d.ts",
+      "default": "./dist/theme.js"
+    },
+    "./theme-context": {
+      "types": "./dist/theme-context.d.ts",
+      "default": "./dist/theme-context.js"
+    },
+    "./ThemeProvider.svelte": "./src/ThemeProvider.svelte",
+    "./ThemeSwitch.svelte": "./src/ThemeSwitch.svelte",
+    "./DateRangePicker.svelte": "./src/DateRangePicker.svelte",
+    "./primitives/*.svelte": "./src/primitives/*.svelte",
+    "./composed/*.svelte": "./src/composed/*.svelte",
+    "./patterns/*.svelte": "./src/patterns/*.svelte",
+    "./styles/*.css": "./src/styles/*.css"
+  },
+  "files": [
+    "dist",
+    "src/**/*.svelte",
+    "src/styles/**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.30.0",
+    "svelte": "^5.0.0",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish",
+    "prepublishOnly": "pnpm run build && pnpm run typecheck",
+    "lint": "echo 'lint ui'",
+    "test": "echo 'test ui'"
+  }
+}
