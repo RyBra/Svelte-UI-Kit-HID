@@ -1,11 +1,11 @@
-# @n.tarasenko/ui
+# yaray-ui-kit-hid
 
 Reusable Svelte UI kit with primitives, composed components, patterns, and theme utilities.
 
 ## Installation
 
 ```bash
-pnpm add @n.tarasenko/ui
+pnpm add yaray-ui-kit-hid
 ```
 
 ## Peer dependencies
@@ -15,27 +15,27 @@ pnpm add @n.tarasenko/ui
 ## Usage
 
 ```ts
-import { createThemeController } from "@n.tarasenko/ui";
+import { createThemeController } from "yaray-ui-kit-hid";
 ```
 
 ```svelte
 <script lang="ts">
-  import Button from "@n.tarasenko/ui/primitives/Button.svelte";
+  import Button from "yaray-ui-kit-hid/primitives/Button.svelte";
 </script>
 
 <Button>Click me</Button>
 ```
 
 ```css
-@import "@n.tarasenko/ui/styles/tokens.css";
-@import "@n.tarasenko/ui/styles/theme.css";
-@import "@n.tarasenko/ui/styles/motion.css";
+@import "yaray-ui-kit-hid/styles/tokens.css";
+@import "yaray-ui-kit-hid/styles/theme.css";
+@import "yaray-ui-kit-hid/styles/motion.css";
 ```
 
 ## Exports
 
-- Root utilities: `@n.tarasenko/ui`
-- Theme modules: `@n.tarasenko/ui/theme`, `@n.tarasenko/ui/theme-context`
-- Svelte components: `@n.tarasenko/ui/primitives/*.svelte`, `@n.tarasenko/ui/composed/*.svelte`, `@n.tarasenko/ui/patterns/*.svelte`
-- Styles: `@n.tarasenko/ui/styles/*.css`
+- Root utilities: `yaray-ui-kit-hid`
+- Theme modules: `yaray-ui-kit-hid/theme`, `yaray-ui-kit-hid/theme-context`
+- Svelte components: `yaray-ui-kit-hid/primitives/*.svelte`, `yaray-ui-kit-hid/composed/*.svelte`, `yaray-ui-kit-hid/patterns/*.svelte`
+- Styles: `yaray-ui-kit-hid/styles/*.css`
 

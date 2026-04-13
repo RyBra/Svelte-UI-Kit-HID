@@ -1,5 +1,5 @@
 {
-  "name": "@n.tarasenko/ui",
+  "name": "yaray-ui-kit-hid",
   "version": "0.2.0",
   "private": false,
   "description": "Reusable Svelte UI kit for Yaray applications.",
