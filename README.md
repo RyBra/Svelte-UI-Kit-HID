@@ -1,11 +1,11 @@
-# @yaray/ui
+# @rybra/ui
 
 Reusable Svelte UI kit with primitives, composed components, patterns, and theme utilities.
 
 ## Installation
 
 ```bash
-pnpm add @yaray/ui
+pnpm add @rybra/ui
 ```
 
 ## Peer dependencies
@@ -15,27 +15,27 @@ pnpm add @yaray/ui
 ## Usage
 
 ```ts
-import { createThemeController } from "@yaray/ui";
+import { createThemeController } from "@rybra/ui";
 ```
 
 ```svelte
 <script lang="ts">
-  import Button from "@yaray/ui/primitives/Button.svelte";
+  import Button from "@rybra/ui/primitives/Button.svelte";
 </script>
 
 <Button>Click me</Button>
 ```
 
 ```css
-@import "@yaray/ui/styles/tokens.css";
-@import "@yaray/ui/styles/theme.css";
-@import "@yaray/ui/styles/motion.css";
+@import "@rybra/ui/styles/tokens.css";
+@import "@rybra/ui/styles/theme.css";
+@import "@rybra/ui/styles/motion.css";
 ```
 
 ## Exports
 
-- Root utilities: `@yaray/ui`
-- Theme modules: `@yaray/ui/theme`, `@yaray/ui/theme-context`
-- Svelte components: `@yaray/ui/primitives/*.svelte`, `@yaray/ui/composed/*.svelte`, `@yaray/ui/patterns/*.svelte`
-- Styles: `@yaray/ui/styles/*.css`
+- Root utilities: `@rybra/ui`
+- Theme modules: `@rybra/ui/theme`, `@rybra/ui/theme-context`
+- Svelte components: `@rybra/ui/primitives/*.svelte`, `@rybra/ui/composed/*.svelte`, `@rybra/ui/patterns/*.svelte`
+- Styles: `@rybra/ui/styles/*.css`
 

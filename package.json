@@ -1,5 +1,5 @@
 {
-  "name": "@yaray/ui",
+  "name": "@rybra/ui",
   "version": "0.2.0",
   "private": false,
   "description": "Reusable Svelte UI kit for Yaray applications.",
